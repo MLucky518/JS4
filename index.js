@@ -160,6 +160,7 @@ class Instructor extends Lambdasian {
     this.specialty = specialty;
     this.favLanguage = favLanguage;
     this.catchPhrase = catchPhrase;
+    
   }
 
   demo(subject){
@@ -168,6 +169,10 @@ class Instructor extends Lambdasian {
 
   grade(student,subject){
     return `${student.name} receives a perfect score on ${subject}`;
+  }
+
+  gradeAssignment(student){
+   student.grade += Math.random();
   }
 
 
@@ -189,12 +194,25 @@ class Instructor extends Lambdasian {
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 class Student extends Lambdasian {
-  constructor({name,age,location,previousBackground,className,favSubjects}){
+  constructor({name,age,location,previousBackground,className,favSubjects,grade}){ // would be an object
     super({name,age,location});
     this.previousBackground = previousBackground;
     this.className = className;
     this.favSubjects = favSubjects;
+    this.grade = grade;
+    if(this.grade > 100){
+      this.grade = 100;
+    }else if(this.grade <1){
+      this.grade = 1;
+    }
+    
   }
+
+ graduate(student){
+if(student.grade > 70){
+  return `${student.name} passed!`
+}
+ }
 
   listSubjects(){
     let word = "";
@@ -218,6 +236,8 @@ class Student extends Lambdasian {
 
 
 }
+
+
 
 /*
   TASK 6
@@ -258,6 +278,9 @@ debugsCode(student,subject){
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
+
+
+
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
